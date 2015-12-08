@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{%=o.htmlWebpackPlugin.options.title || 'Redux React Router Async Example'%}</title>
+    <title>{%=o.htmlWebpackPlugin.options.title || 'Quartet DE'%}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,6 +23,8 @@
     <div id="app"></div>
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry%}"></script>
+    <script src="https://use.typekit.net/ddu6lpo.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     {% } %}
   </body>
 </html>
