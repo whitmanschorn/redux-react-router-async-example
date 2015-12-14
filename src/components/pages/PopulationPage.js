@@ -30,13 +30,12 @@ const treeContainerStyle = {
 };
 const treeInnerStyle = {
   height: '100%',
-  width: 200,
+  maxWidth: 200,
 };
 const mainSectionStyle = {
   textAlign: 'center',
-  margin: 'auto',
   float: 'left',
-  width: '100%',
+  width: '75%',
 };
 
 const parentStyle = {

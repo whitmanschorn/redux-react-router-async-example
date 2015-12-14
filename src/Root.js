@@ -53,9 +53,7 @@ function renderRoutes () {
           path="tree"
           component={PopulationPage}
           onEnter={requireAuth}
-        >
-          <Route path=':username' component={GithubUser} />
-        </Route>
+        />
         <Route path="about" component={About} />
         <Route path="account" component={Account} onEnter={requireAuth}>
           <Route path="profile" component={AccountHome} />

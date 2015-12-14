@@ -8,6 +8,3 @@ export { default as PopulationPage } from './pages/PopulationPage';
 export { default as Login } from './pages/Login';
 export { default as Home } from './pages/Home';
 export { default as SuperSecretArea } from './pages/SuperSecretArea';
-
-export { default as GithubRepo } from './github/Repo';
-export { default as GithubUser } from './github/User';

@@ -53,7 +53,10 @@ export default class TreeContainer extends React.Component {
           isSelected={!!(this.props.selectedNodeId === selectedItem.id)}
         />);
       };
-      domTree.push(<hr key={'hr-' + row} />);
+      domTree.push(
+        <div key={'hr-' + row}>
+          <icon className="fa fa-2x fa-level-down"/>
+        </div>);
     }
 
     return (

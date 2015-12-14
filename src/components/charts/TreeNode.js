@@ -6,13 +6,15 @@ const nodeStyle = {
   borderColor: '#000',
   margin: 10,
   padding: 10,
-  display: 'inline-block',
 };
+const DONUT_SIZE = 50;
+const MARGIN_SIZE = 5;
+const LOADING_COLOR = '#D6D6D5';
 
 const pieChartProps = {
   transitionDuration: 150,
-  height: 50,
-  width: 50,
+  height: DONUT_SIZE,
+  width: DONUT_SIZE,
   margin: { top: 0, right: 0, bottom: 0, left: 0 } ,
   donut: true,
   donutRatio: 0.35,
@@ -38,7 +40,21 @@ export default class TreeNode extends React.Component {
         chartProps={ pieChartProps }
       />);
     else
-      return (<span>loading</span>);
+      return this.renderLoadingMessage();
+  }
+
+  renderLoadingMessage () {
+    return (<svg width={DONUT_SIZE} height={DONUT_SIZE}>
+      <circle
+        stroke='#299CD7'
+        strokeWidth="2"
+        strokeLocation="inside"
+        fill='#D6D6D5'
+        cx={DONUT_SIZE / 2}
+        cy={DONUT_SIZE / 2}
+        r={ (DONUT_SIZE - 2) / 2}
+      />
+    </svg>);
   }
 
   render () {
