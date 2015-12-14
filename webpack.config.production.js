@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './lib/index.js'
+    app: './src/index.js'
   },
   output: {
     filename: '[name].min.js',
@@ -37,7 +37,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
-      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'lib') }
+      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'src') }
     ]
   },
   cssnext: {

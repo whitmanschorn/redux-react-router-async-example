@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './lib/index'
+    './src/index'
   ],
   output: {
     filename: 'app.js',
@@ -23,7 +23,7 @@ module.exports = {
       '__DEVTOOLS__': process.env.DEVTOOLS === 'true' ? true : false
     }),
     new HtmlWebpackPlugin({
-      title: 'Redux React Router Async Example',
+      title: 'Quartet Health Data Engine',
       filename: 'index.html',
       template: 'index.template.html',
       favicon: path.join(__dirname, 'assets', 'images', 'favicon.ico')
@@ -32,7 +32,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader!cssnext-loader' },
-      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'lib') }
+      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'src') }
     ]
   },
   cssnext: {
