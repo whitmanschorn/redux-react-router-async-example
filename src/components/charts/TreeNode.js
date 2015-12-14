@@ -8,8 +8,6 @@ const nodeStyle = {
   padding: 10,
 };
 const DONUT_SIZE = 50;
-const MARGIN_SIZE = 5;
-const LOADING_COLOR = '#D6D6D5';
 
 const pieChartProps = {
   transitionDuration: 150,

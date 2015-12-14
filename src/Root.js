@@ -16,7 +16,6 @@ const {
   AccountHome,
   Application,
   PopulationPage,
-  GithubUser,
   Home,
   Login,
   SuperSecretArea
