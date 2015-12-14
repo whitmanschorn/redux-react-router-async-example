@@ -12,8 +12,8 @@
     "clean": "rimraf dist",
     "deploy": "npm run dist && gh-pages -d dist",
     "dist": "npm run clean && npm run lint && NODE_ENV=production webpack --config webpack.config.production.js",
-    "lint": "eslint lib",
-    "start": "npm run build && node server.js & json-server lib/utils/generate.js",
+    "lint": "eslint src",
+    "start": "npm run build && node server.js & json-server src/utils/generate.js",
     "start:dev": "npm run build && DEVTOOLS=true node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
