@@ -26,7 +26,6 @@ const treeContainerStyle = {
   overflowY: 'scroll',
   height: '100%',
   width: 'auto',
-  backgroundColor: '#aaffcc',
   position: 'absolute'
 };
 const treeInnerStyle = {
@@ -34,7 +33,6 @@ const treeInnerStyle = {
   width: 200,
 };
 const mainSectionStyle = {
-  backgroundColor: '#ffaacc',
   textAlign: 'center',
   margin: 'auto',
   float: 'left',
@@ -48,7 +46,6 @@ const parentStyle = {
   position: 'relative',
   width: '100%',
   height: '100%',
-  backgroundColor: '#ccaaff',
 };
 
 @connect(TreeSelector, TreeActionCreators)

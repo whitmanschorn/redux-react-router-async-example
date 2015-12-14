@@ -10,7 +10,7 @@ const nodeStyle = {
 };
 
 const pieChartProps = {
-  transitionDuration: 350,
+  transitionDuration: 150,
   height: 50,
   width: 50,
   margin: { top: 0, right: 0, bottom: 0, left: 0 } ,
@@ -46,14 +46,10 @@ export default class TreeNode extends React.Component {
     finalNodeStyle.borderColor = this.props.isSelected ? '#299CD7' : '#000';
     finalNodeStyle.color = this.props.isSelected ? '#299CD7' : '#000';
     return (
-      <div style={finalNodeStyle}>
-        {this.props.node.id}
+      <div style={finalNodeStyle} onClick={() => this.props.selectNodeAction(this.props.node.id)}>
+        {this.props.node.id} <button onClick={() => this.props.deleteNodeAction(this.props.node.id)}>x</button>
         <br/>
         {this.renderDonut()}
-        <br/>
-        <button onClick={() => this.props.selectNodeAction(this.props.node.id)}>select</button>
-        &nbsp;
-        <button onClick={() => this.props.deleteNodeAction(this.props.node.id)}>delete</button>
       </div>
     );
   }
