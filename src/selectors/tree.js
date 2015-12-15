@@ -1,8 +1,10 @@
 import { createSelector } from 'reselect';
+import { DEFAULT_METRIC } from '../constants';
 
 const selectedNodeSelector = state => state.tree.get('selectedNodeId');
 const nodeMapSelector = state => state.tree.get('nodeMap');
 const rootSelector = state => state.tree.get('rootNodeId');
+const currentViewSelector = state => state.router.location.query.metric || DEFAULT_METRIC;
 const selectedNodeDataSelector = createSelector(
   selectedNodeSelector,
   nodeMapSelector,
@@ -17,10 +19,12 @@ export default createSelector(
   selectedNodeDataSelector,
   nodeMapSelector,
   rootSelector,
-  (selectedNodeId, selectedNodeData, nodeMap, rootNodeId) => ({
+  currentViewSelector,
+  (selectedNodeId, selectedNodeData, nodeMap, rootNodeId, currentView) => ({
     selectedNodeId,
     selectedNodeData,
     nodeMap,
-    rootNodeId
+    rootNodeId,
+    currentView
   })
   );

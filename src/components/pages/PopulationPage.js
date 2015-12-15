@@ -61,6 +61,8 @@ export default class PopulationPage extends React.Component {
     children: PropTypes.any,
     actions: PropTypes.object,
     history: PropTypes.object,
+    location: PropTypes.object,
+    currentView: PropTypes.string.isRequired,
     selectedNodeId: PropTypes.string.isRequired,
     selectedNodeData: PropTypes.array,
     addNodeAction: PropTypes.func.isRequired,
@@ -96,13 +98,11 @@ export default class PopulationPage extends React.Component {
   }
 
   viewMetric (metricString) {
-    console.log('wee2');
-    console.log(metricString);
-    this.props.history.push({ ...location, search: '?view=' + metricString });
+    this.props.history.push({ ...location, search: '?metric=' + metricString });
   }
 
   renderTreeNavigation () {
-    console.log('renderTreeNavigation');
+    // todo replace button with links, erase viewMetric method
     return (
       <div style={treeNavigationStyle}>
         <button onClick={() => { this.props.addNodeAction(this.randomNode(), this.props.selectedNodeId); }} >
@@ -116,7 +116,9 @@ export default class PopulationPage extends React.Component {
   }
 
   renderMainView () {
-    return (<div style={{ margin: 20 }}>
+    return (
+      <div style={{ margin: 20 }}>
+        <h2>{this.props.currentView}</h2>
         <div>
           <BarChart
            data={this.props.selectedNodeData || pieChartData}
@@ -157,12 +159,14 @@ export default class PopulationPage extends React.Component {
           <h1>Population</h1>
           <h2>Find insights for your patients and providers</h2>
         </div>
-        {this.renderTreeMain()}
-        {this.renderTreeContainer()}
-        <div className="foobar">
-          {/* this will render the child routes */}
-          {this.props.children &&
-          React.cloneElement(this.props.children, { ...this.props })}
+        <div>
+          {this.renderTreeMain()}
+          {this.renderTreeContainer()}
+          <div className="foobar">
+            {/* this will render the child routes */}
+            {this.props.children &&
+            React.cloneElement(this.props.children, { ...this.props })}
+          </div>
         </div>
       </div>
     );
