@@ -29,19 +29,18 @@ export default class TreeNode extends React.Component {
     isSelected: PropTypes.bool.isRequired,
   }
 
-  renderDonut () {
-    console.log(this.props.node);
-    if (this.props.node.result)
+  renderDonut (result) {
+    if (result)
       return (<BarChart
-        data={this.props.node.result}
+        data={result}
         typeName={"pieChart"}
         chartProps={ pieChartProps }
       />);
     else
-      return this.renderLoadingMessage();
+      return this.renderLoadingSymbol();
   }
 
-  renderLoadingMessage () {
+  renderLoadingSymbol () {
     return (<svg width={DONUT_SIZE} height={DONUT_SIZE}>
       <circle
         stroke='#299CD7'
@@ -63,7 +62,7 @@ export default class TreeNode extends React.Component {
       <div style={finalNodeStyle} onClick={() => this.props.selectNodeAction(this.props.node.id)}>
         {this.props.node.id} <button onClick={() => this.props.deleteNodeAction(this.props.node.id)}>x</button>
         <br/>
-        {this.renderDonut()}
+        {this.renderDonut(this.props.node.result)}
       </div>
     );
   }

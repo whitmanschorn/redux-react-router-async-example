@@ -84,13 +84,10 @@ export default class PopulationPage extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps');
-    console.log(nextProps.selectedNodeId);
     this.props.fetchDataIfNeeded(nextProps.selectedNodeId);
   }
 
   render () {
-    console.log(this.props.selectedNodeData);
     return (
       <div style={parentStyle}>
         <div style={mainSectionStyle}>
