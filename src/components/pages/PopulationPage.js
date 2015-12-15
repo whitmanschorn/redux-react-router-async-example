@@ -28,6 +28,11 @@ const treeContainerStyle = {
   width: 'auto',
   position: 'absolute'
 };
+const treeNavigationStyle = {
+  float: 'left',
+  width: 'auto',
+  position: 'absolute'
+};
 const treeInnerStyle = {
   height: '100%',
   maxWidth: 200,
@@ -35,7 +40,9 @@ const treeInnerStyle = {
 const mainSectionStyle = {
   textAlign: 'center',
   float: 'left',
+  height: 800,
   width: '75%',
+  margin: 20,
 };
 
 const parentStyle = {
@@ -53,6 +60,7 @@ export default class PopulationPage extends React.Component {
   static propTypes = {
     children: PropTypes.any,
     actions: PropTypes.object,
+    history: PropTypes.object,
     selectedNodeId: PropTypes.string.isRequired,
     selectedNodeData: PropTypes.array,
     addNodeAction: PropTypes.func.isRequired,
@@ -87,39 +95,70 @@ export default class PopulationPage extends React.Component {
     this.props.fetchDataIfNeeded(nextProps.selectedNodeId);
   }
 
+  viewMetric (metricString) {
+    console.log('wee2');
+    console.log(metricString);
+    this.props.history.push({ ...location, search: '?view=' + metricString });
+  }
+
+  renderTreeNavigation () {
+    console.log('renderTreeNavigation');
+    return (
+      <div style={treeNavigationStyle}>
+        <button onClick={() => { this.props.addNodeAction(this.randomNode(), this.props.selectedNodeId); }} >
+          Add a filter
+        </button>
+        <br/>
+        <button onClick={() => this.viewMetric('volume')}>volume</button>
+        <button onClick={() => this.viewMetric('cost')}>cost</button>
+      </div>
+      );
+  }
+
+  renderMainView () {
+    return (<div style={{ margin: 20 }}>
+        <div>
+          <BarChart
+           data={this.props.selectedNodeData || pieChartData}
+           typeName={"pieChart"}
+           chartProps={ pieChartProps }
+          />
+        </div>
+      </div>);
+  }
+
+  renderTreeMain () {
+    return (
+    <div style={mainSectionStyle}>
+      {this.renderTreeNavigation()}
+      {this.renderMainView()}
+    </div>);
+  }
+
+  renderTreeContainer () {
+    return (
+      <div style={treeContainerStyle}>
+        <div style={treeInnerStyle}>
+          <TreeContainer
+          nodeMap={this.props.nodeMap}
+          selectedNodeId={this.props.selectedNodeId}
+          rootNodeId={this.props.rootNodeId}
+          deleteNodeAction={this.props.deleteNodeAction}
+          selectNodeAction={this.props.selectNodeAction}
+          />
+        </div>
+      </div>);
+  }
+
   render () {
     return (
       <div style={parentStyle}>
-        <div style={mainSectionStyle}>
-            <div className="header">
-              <h1>Population</h1>
-              <h2>Find insights for your patients and providers</h2>
-            </div>
-            <div style={{ margin: 20 }}>
-              <div>
-              <h2>{this.props.selectedNodeId}</h2>
-              <button onClick={() => { this.props.addNodeAction(this.randomNode(), this.props.selectedNodeId); }} >
-                Add a filter
-              </button>
-             <BarChart
-               data={this.props.selectedNodeData || pieChartData}
-               typeName={"pieChart"}
-               chartProps={ pieChartProps }
-              />
-              </div>
-            </div>
+        <div className="header">
+          <h1>Population</h1>
+          <h2>Find insights for your patients and providers</h2>
         </div>
-        <div style={treeContainerStyle}>
-          <div style={treeInnerStyle}>
-           <TreeContainer
-             nodeMap={this.props.nodeMap}
-             selectedNodeId={this.props.selectedNodeId}
-             rootNodeId={this.props.rootNodeId}
-             deleteNodeAction={this.props.deleteNodeAction}
-             selectNodeAction={this.props.selectNodeAction}
-             />
-          </div>
-        </div>
+        {this.renderTreeMain()}
+        {this.renderTreeContainer()}
         <div className="foobar">
           {/* this will render the child routes */}
           {this.props.children &&

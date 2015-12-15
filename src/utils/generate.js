@@ -10,24 +10,43 @@ module.exports = function () {
     nodes: _.times(100, function (n) {
       return {
         id: 'node:' + n,
-        'data': [
-          {
-            'label': 'One',
-            'value': randomValue()
-          },
-          {
-            'label': 'Two',
-            'value': randomValue()
-          },
-          {
-            'label': 'Three',
-            'value': randomValue()
-          },
-          {
-            'label': 'Four',
-            'value': randomValue()
-          },
-        ],
+        data: {
+          volume: [
+            {
+              label: 'Comorbid',
+              value: randomValue()
+            },
+            {
+              label: 'Undiagnosed',
+              value: randomValue()
+            },
+            {
+              label: 'BH Only',
+              value: randomValue()
+            },
+            {
+              label: 'Chronic Only',
+              value: randomValue()
+            },
+          ],
+          cost: [
+            {
+              label: 'Comorbid',
+              value: randomValue()
+            },
+            {
+              label: 'Undiagnosed',
+              value: randomValue()
+            },
+            {
+              label: 'BH Only',
+              value: randomValue()
+            },            {
+              label: 'Chronic Only',
+              value: 0
+            },
+          ],
+        }
       };
     })
   };
