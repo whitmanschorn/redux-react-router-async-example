@@ -10,6 +10,7 @@ export default class BarChart extends React.Component {
   };
 
   render () {
+    console.log(this.props.data);
     return (
       <div onClick={this.changeDatum}>
         <NVD3Chart

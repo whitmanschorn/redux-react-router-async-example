@@ -4,13 +4,17 @@ import { DEFAULT_METRIC } from '../constants';
 const selectedNodeSelector = state => state.tree.get('selectedNodeId');
 const nodeMapSelector = state => state.tree.get('nodeMap');
 const rootSelector = state => state.tree.get('rootNodeId');
-const currentViewSelector = state => state.router.location.query.metric || DEFAULT_METRIC;
+const currentMetricSelector = state => state.router.location.query.metric || DEFAULT_METRIC;
 const selectedNodeDataSelector = createSelector(
   selectedNodeSelector,
   nodeMapSelector,
-  (selectedNodeId, nodeMap) => {
-    let t = nodeMap.getIn([selectedNodeId, 'result']);
-    return t || [];
+  currentMetricSelector,
+  (selectedNodeId, nodeMap, currentMetric) => {
+    let dataObject = nodeMap.getIn([selectedNodeId, 'result']);
+    if (dataObject && dataObject[currentMetric])
+      return dataObject[currentMetric];
+    else
+      return [];
   }
   );
 
@@ -19,12 +23,12 @@ export default createSelector(
   selectedNodeDataSelector,
   nodeMapSelector,
   rootSelector,
-  currentViewSelector,
-  (selectedNodeId, selectedNodeData, nodeMap, rootNodeId, currentView) => ({
+  currentMetricSelector,
+  (selectedNodeId, selectedNodeData, nodeMap, rootNodeId, currentMetric) => ({
     selectedNodeId,
     selectedNodeData,
     nodeMap,
     rootNodeId,
-    currentView
+    currentMetric
   })
   );

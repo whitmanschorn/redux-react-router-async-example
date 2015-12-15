@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import BarChart from './BarChart';
+import { DEFAULT_METRIC } from './../../constants';
 
 const nodeStyle = {
   border: '1px solid',
@@ -30,14 +31,16 @@ export default class TreeNode extends React.Component {
   }
 
   renderDonut (result) {
-    if (result)
+    if (result) {
       return (<BarChart
-        data={result}
+        data={result[DEFAULT_METRIC]}
         typeName={"pieChart"}
         chartProps={ pieChartProps }
       />);
-    else
+    }
+    else {
       return this.renderLoadingSymbol();
+    }
   }
 
   renderLoadingSymbol () {

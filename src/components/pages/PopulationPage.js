@@ -62,7 +62,7 @@ export default class PopulationPage extends React.Component {
     actions: PropTypes.object,
     history: PropTypes.object,
     location: PropTypes.object,
-    currentView: PropTypes.string.isRequired,
+    currentMetric: PropTypes.string.isRequired,
     selectedNodeId: PropTypes.string.isRequired,
     selectedNodeData: PropTypes.array,
     addNodeAction: PropTypes.func.isRequired,
@@ -116,14 +116,17 @@ export default class PopulationPage extends React.Component {
   }
 
   renderMainView () {
+    // console.log('main props');
+    // console.log(this.props);
     return (
       <div style={{ margin: 20 }}>
-        <h2>{this.props.currentView}</h2>
+        <h2>{this.props.currentMetric}</h2>
         <div>
           <BarChart
-           data={this.props.selectedNodeData || pieChartData}
+           data={ this.props.selectedNodeData }
            typeName={"pieChart"}
            chartProps={ pieChartProps }
+           currentMetric={this.props.currentMetric}
           />
         </div>
       </div>);
