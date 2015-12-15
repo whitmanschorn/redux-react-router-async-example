@@ -19,6 +19,7 @@ const pieChartProps = {
   donutRatio: 0.35,
   showLabels: false,
   showLegend: false,
+  tooltip: false,
 };
 
 export default class TreeNode extends React.Component {
@@ -31,16 +32,15 @@ export default class TreeNode extends React.Component {
   }
 
   renderDonut (result) {
-    if (result) {
+    if (result)
       return (<BarChart
         data={result[DEFAULT_METRIC]}
         typeName={"pieChart"}
         chartProps={ pieChartProps }
       />);
-    }
-    else {
+    else
       return this.renderLoadingSymbol();
-    }
+
   }
 
   renderLoadingSymbol () {

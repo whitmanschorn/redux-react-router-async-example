@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import TreeActionCreators from '../../action_creators/tree';
 import TreeSelector from '../../selectors/tree';
 import TreeContainer from '../charts/TreeContainer';
-import { donutMock } from '../../utils/mocks';
 import BarChart from '../charts/BarChart';
-
-const pieChartData = donutMock;
 
 const pieChartProps = {
   transitionDuration: 350,
@@ -15,9 +12,8 @@ const pieChartProps = {
   margin: { top: 20, right: 20, bottom: 20, left: 20 } ,
   donut: true,
   donutRatio: 0.35,
-  showLabels: true,
-  labelThreshold: 0.05,
-  labelType: 'percent'
+  showLabels: false,
+  tooltip: false,
 };
 const treeContainerStyle = {
   float: 'left',
@@ -116,8 +112,6 @@ export default class PopulationPage extends React.Component {
   }
 
   renderMainView () {
-    // console.log('main props');
-    // console.log(this.props);
     return (
       <div style={{ margin: 20 }}>
         <h2>{this.props.currentMetric}</h2>
